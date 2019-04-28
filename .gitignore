@@ -102,3 +102,20 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# Folders / Files
+/data/*
+/data/csv
+/data/glove.6B
+/data/google-news-vec
+/data/npy
+/data/test.csv
+/data/train.csv
+/models/glove_200d_norm_word2vec.model
+/models/glove_200d_norm_word2vec.model.vectors.npy
+/models/glove_200d_word2vec.model
+/models/glove_200d_word2vec.model.vectors.npy
+/logs/quora.log
+/.vscode
+/__pycache__
+/data/googlenews
