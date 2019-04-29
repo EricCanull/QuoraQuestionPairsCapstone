@@ -12,6 +12,7 @@ def clean_text(text):
     text = text.lower()
 
     # Clean the text
+    text = re.sub("[^A-Za-z0-9^,!./'+-=]", " ", text)
     text = re.sub("√", "square root", text)
     text = re.sub("≈", "almost equal to", text)
     text = re.sub("≠", "not equal to", text)
@@ -33,7 +34,7 @@ def clean_text(text):
     text = re.sub(r"what's", "what is ", text)
     text = re.sub(r" programing ", " programming ", text)
     text = re.sub(r" bestfriend ", " best friend ", text)
-    text = re.sub("[^A-Za-z0-9^,!./'+-=]", " ", text)
+    
     text = re.sub(r"\'s", " ", text)
     text = re.sub(r"\'ve", " have ", text)
     text = re.sub(r"can't", "cannot ", text)
@@ -95,11 +96,20 @@ def preprocess(x):
     return x
 
 # Show how many question columns have null values
-# def print_null_counts(df1, df2):
-    # df1 = ['Train dataframe:', str(df1.isnull().sum())]
-    # df2 = ['Test dataframe:', str(df2.isnull().sum())]
-    # print("{:s}\n{:s}\n\n{:s}\n{:s}".format(
-    #     df1[0], df1[1], df2[0], df2[1]))
+def print_null_counts(df1, df2):
+    df1 = ['Train dataframe:', str(df1.isnull().sum())]
+    df2 = ['Test dataframe:', str(df2.isnull().sum())]
+    print("{:s}\n{:s}\n\n{:s}\n{:s}".format(
+        df1[0], df1[1], df2[0], df2[1]))
+
+# Prints 10 questions at positions (0, 10, 20, etc...)
+def print_questions(df):
+    a = 0
+    for i in range(a, a+10):
+        print(df.question1[i])
+        print(df.question2[i])
+        print()
+
 
 
 # Drop rows in dataframe where a cell contains a null value

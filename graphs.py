@@ -4,7 +4,6 @@ import seaborn as sns
 
 plt.style.use('ggplot')
 
-
 def pie_chart(train_df):
         
     # Pie chart duplicate question distribution
@@ -33,41 +32,33 @@ def pie_chart(train_df):
               title="Questions",
               loc="center left",
               bbox_to_anchor=(1, 0, 0.5, 1))
-
+    
+    plt.title("Duplicate vs Non-Duplicate Questions", bbox={'facecolor':'0.8', 'pad':5})
     plt.setp(autotexts, size=12, weight="bold")
     plt.setp(texts, size=12, weight="bold")
     plt.show()
 
 
-def histogram(train_df, test_df):
-
-    qns = ['question1', 'question2']
-    train_sizes = train_df[qns[0]].str.len(
-    ).tolist(), train_df[qns[1]].str.len().tolist()
-    test_sizes = test_df[qns[0]].str.len(
-    ).tolist(), test_df[qns[1]].str.len().tolist()
-
-    # plotting histogram
-    bins = 100
-    fig, ax = plt.subplots(2, 1, figsize=(12, 8), sharex=True)
-    ax[0].hist(train_sizes, bins=bins, color=["#9688f6", "#117A65"])
-    ax[0].set_title("Distribution of question lengths in training dataset")
-    ax[1].hist(test_sizes, bins=bins, color=["#9688f6", "#117A65"])
-    ax[1].set_title("Distribution of question lengths in testing dataset")
+def histogram(title, q1, q2):
+    plt.figure(figsize=(12, 5))
+    plt.hist(q1, bins=100, normed = True, color='green', label='Q1')
+    plt.hist(q2, bins=100, normed = True, color='blue',alpha = 0.5, label='Q2')
+    plt.title(title, fontsize=15)
+    plt.legend()
+    plt.xlabel(title, fontsize=15)
+    plt.ylabel('Probability', fontsize=15)
     plt.tight_layout()
-    plt.gca()
     plt.show()
 
 
-def heatmap_chart(df, features):
-       
-        sns.heatmap(df[features].corr(), annot=True,
-                    cmap=sns.color_palette("cubehelix", 8),
-                    linewidths=0.1, cbar_kws={'label': 'Correlations', 
-                                              'orientation': 'horizontal'})
-        fig = plt.gcf()
-        fig.set_size_inches(20, 13)
-        plt.show()
+def heatmap_chart(df, features):    
+    sns.heatmap(df[features].corr(), annot=True,
+                cmap=sns.color_palette("cubehelix", 8),
+                linewidths=0.1, cbar_kws={'label': 'Correlations', 
+                                            'orientation': 'horizontal'})
+    fig = plt.gcf()
+    fig.set_size_inches(20, 13)
+    plt.show()
 
 
 def accuracy_chart(epochs, acc, val_acc, loss, val_loss):
